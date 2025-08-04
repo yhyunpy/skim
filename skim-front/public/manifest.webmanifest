@@ -1,11 +1,11 @@
 {
-  "name": "Okapi",
-  "short_name": "Okapi",
+  "name": "Skim",
+  "short_name": "Skim",
   "start_url": ".",
   "display": "standalone",
   "icons": [
     {
-      "src": "/okapi_img.jpg",
+      "src": "/wave.png",
       "sizes": "192x192",
       "type": "image/png"
     }
