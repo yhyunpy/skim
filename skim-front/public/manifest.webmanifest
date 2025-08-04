@@ -1,0 +1,13 @@
+{
+  "name": "Okapi",
+  "short_name": "Okapi",
+  "start_url": ".",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/okapi_img.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
