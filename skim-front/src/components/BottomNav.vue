@@ -8,7 +8,7 @@
     >
       <span v-if="item.name === 'home'" class="material-icons">home</span>
       <span v-else-if="item.name === 'search'" class="material-icons">search</span>
-      <span v-else-if="item.name === 'auth'" class="material-icons">account_circle</span>
+      <span v-else-if="item.name === 'mypage'" class="material-icons">account_circle</span>
       <span v-else>{{ item.label }}</span>
     </button>
   </nav>
@@ -23,7 +23,7 @@ const route = useRoute()
 const navItems = [
   { name: 'home', label: '홈', path: '/' },
   { name: 'search', label: '검색', path: '/search' },
-  { name: 'auth', label: '로그인', path: '/auth' },
+  { name: 'mypage', label: '마이페이지', path: '/mypage' },
 ]
 
 const goTo = (path) => {
@@ -41,6 +41,7 @@ const isActive = (path) => {
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 60px;
   background: #fff;
   display: flex;
   justify-content: space-around;

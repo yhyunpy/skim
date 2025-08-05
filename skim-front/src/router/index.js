@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AuthView from '../views/AuthView.vue'
+import LoginView from '../views/LoginView.vue'
+import MyPageView from '../views/MyPageView.vue'
+import OAuthCallback from '../views/OAuthCallback.vue'
+import SearchView from '../views/SearchView.vue'
 
 const routes = [
     {
@@ -9,15 +12,25 @@ const routes = [
         component: HomeView,
     },
     {
-        path: '/auth',
-        name: 'auth',
-        component: AuthView,
+        path: '/login',
+        name: 'Login',
+        component: LoginView,
+    },
+    {
+        path: '/mypage',
+        name: 'MyPage',
+        component: MyPageView,
+    },
+    {
+        path: '/oauth/callback',
+        name: 'OAuthCallback',
+        component: OAuthCallback,
     },
     {
         path: '/search',
-        name: 'SearchView',
-        component: () => import('@/views/SearchView.vue'),
-    }
+        name: 'Search',
+        component: SearchView,
+    },
 ]
 
 const router = createRouter({
