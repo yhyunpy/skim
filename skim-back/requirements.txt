@@ -3,3 +3,4 @@ httpx
 python-dotenv 
 uvicorn
 psycopg2
+jwt

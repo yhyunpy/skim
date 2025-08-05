@@ -3,9 +3,10 @@ from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
-from app.auth import get_google_user_info
+from app.auth import (create_access_token, create_refresh_token,
+                      get_current_user, get_google_user_info)
 from app.database import get_sess
-from app.models.user import Token
+from app.models.user import Token, UserRes
 from app.schemas.user import User
 
 ROUTER = APIRouter()
@@ -45,7 +46,7 @@ async def get_login(
 ):
     """
     1. 프론트에서 Google 로그인 -> authorization code 발급
-    2. Google이 redirect_uri=/users/login 으로 사용자를 리디렉션
+    2. Google이 프론트 oauth/callback 으로 사용자를 리디렉션 -> 프론트에서 백 /users/login 호출
     3. Google OAuth 서버에 요청 -> Google access_token 획득
     4. Google access_token으로 사용자 정보 조회
     5. 사용자 정보로 skim DB에서 회원 조회 또는 회원 생성
@@ -58,8 +59,14 @@ async def get_login(
 
     user = await create_user(sess, google_user_info)
 
-    # TODO: JWT 발급
-    access_token = ""
-    refresh_token = ""
+    token_data = {"sub": user.id}
 
-    return Token(access_token=access_token, refresh_token=refresh_token)
+    return Token(
+        access_token=create_access_token(token_data),
+        refresh_token=create_refresh_token(token_data),
+    )
+
+
+@ROUTER.get("/me", response_model=UserRes)
+async def get_me(current_user: User = Depends(get_current_user)):
+    return current_user
