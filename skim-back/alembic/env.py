@@ -1,8 +1,8 @@
 from logging.config import fileConfig
 
+from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from alembic import context
 from app.config import SYNC_DATABASE_URL
 from app.database import Base
 from app.schemas import *

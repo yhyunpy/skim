@@ -1,10 +1,14 @@
-import shortuuid as suid
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
+import shortuuid as suid
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
-from app.auth import (create_access_token, create_refresh_token,
-                      get_current_user, get_google_user_info)
+from app.auth import (
+    create_access_token,
+    create_refresh_token,
+    get_current_user,
+    get_google_user_info,
+)
 from app.database import get_sess
 from app.models.user import Token, UserRes
 from app.schemas.user import User
